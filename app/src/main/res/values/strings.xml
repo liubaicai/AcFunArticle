@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">AcFun文章区</string>
+    <string name="action_settings">设置</string>
+    <string name="action_user">用户</string>
+
+    <string name="title_activity_detail">文章详情</string>
+    <string name="title_activity_settings">设置</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="common_comment">评论</string>
+
+    <string name="action_110">综合</string>
+    <string name="action_73">工作·情感</string>
+    <string name="action_74">动漫文化</string>
+    <string name="action_75">漫画·轻小说</string>
+    <string name="action_164">游戏</string>
+
+    <string name="login">登录</string>
+    <string name="login_view_empty_error_text">信息不足，无法连接（＞д＜）</string>
+    <string name="login_view_forget_password_text">忘记密码?</string>
+    <string name="login_view_forget_password_text_in_player">忘记密码</string>
+    <string name="login_view_image_code_empty_error_text">别无视验证码呀</string>
+    <string name="login_view_loading_text">AC娘开门中…</string>
+    <string name="login_view_login_text">@string/login</string>
+    <string name="login_view_need_input_image_code_text">本次登录需要填写验证码，请填写验证码后重试！</string>
+    <string name="login_view_password_hint_text">密纹</string>
+    <string name="login_view_regist_text">快速注册</string>
+    <string name="login_view_username_hint_text">账号/手机号/邮箱</string>
+    <string name="regist_view_verification_code_hint_text">验证码</string>
+
+    <string name="about_description">AcFun文章区非官方客户端。轻量，快捷，刷新及时的文章区客户端~\n微博@刘白菜\n或者加入QQ群:373715806\n与作者交流~</string>
+</resources>
