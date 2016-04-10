@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_slide_menu_header">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/slide_menu_avatar"
+        android:layout_width="@dimen/width_slide_menu_avtar"
+        android:layout_height="@dimen/width_slide_menu_avtar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginTop="15.0dip"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:failureImage="@drawable/img_default_avatar"
+        fresco:failureImageScaleType="centerInside"
+        fresco:placeholderImage="@color/white"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="@color/divider"
+        fresco:roundingBorderWidth="@dimen/height_divider_line" />
+
+    <TextView
+        android:id="@+id/slide_menu_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/slide_menu_avatar"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginTop="15.0dip"
+        android:singleLine="true"
+        android:text="@string/slide_menu_login"
+        android:textColor="@color/white"
+        android:textSize="18.0sp" />
+
+</RelativeLayout>

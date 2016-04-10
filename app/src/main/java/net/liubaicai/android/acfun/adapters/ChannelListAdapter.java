@@ -1,6 +1,7 @@
 package net.liubaicai.android.acfun.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class ChannelListAdapter extends BaseAdapter {
     private List<ChannelList> channelListItems;
     private int resource;
     private LayoutInflater inflater;
-    Context basecontext;
+    private Context basecontext;
 
     public ChannelListAdapter(Context context, List<ChannelList> channelListItems, int resource) {
         this.channelListItems = channelListItems;
@@ -88,8 +89,8 @@ public class ChannelListAdapter extends BaseAdapter {
         }
         ChannelList channelListItem = channelListItems.get(position);
 
-        article_title.setText(channelListItem.getTitle());
-        article_description.setText(channelListItem.getDescription());
+        article_title.setText(Html.fromHtml(channelListItem.getTitle()));
+        article_description.setText(Html.fromHtml(Html.fromHtml(channelListItem.getDescription()).toString()));
         user_name.setText(channelListItem.getUser().getUsername());
         views_num.setText(String.valueOf(channelListItem.getViews()));
         update_time_string.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(channelListItem.getReleaseDate())));

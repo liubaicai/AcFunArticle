@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.liubaicai.android.acfun"
-    android:versionCode="1"
-    android:versionName="1.0.0.0">
+    android:versionCode="2"
+    android:versionName="1.1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,6 +17,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56f73d94e0f55a3e9900155e" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Liubaicai.net" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -28,25 +36,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_detail"
-            android:theme="@style/FullscreenTheme">
+            android:name=".ArticleActivity"
+            android:label="@string/title_activity_article"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="net.liubaicai.android.acfun.MainActivity" />
         </activity>
-
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="56f73d94e0f55a3e9900155e" />
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="Liubaicai.net" />
+        <activity
+            android:name=".CommentsActivity"
+            android:label="@string/title_activity_comments"
+            android:parentActivityName=".ArticleActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.liubaicai.android.acfun.ArticleActivity" />
+        </activity>
 
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.liubaicai.android.acfun.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

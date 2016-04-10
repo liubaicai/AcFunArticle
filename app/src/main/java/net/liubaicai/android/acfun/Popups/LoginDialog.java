@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +20,7 @@ import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import net.liubaicai.android.acfun.R;
-import net.liubaicai.android.acfun.Settings;
+import net.liubaicai.android.acfun.tools.Settings;
 import net.liubaicai.android.acfun.models.UserLoginResult;
 
 import java.io.IOException;
@@ -37,6 +36,16 @@ import cz.msebera.android.httpclient.Header;
  * Created by liush on 2016/3/26.
  */
 public class LoginDialog extends Dialog {
+
+    public interface ICallBack {
+        public void onLogin(boolean b);
+    }
+
+    ICallBack icallBack = null;
+
+    public void setOnLogin(ICallBack iBack) {
+        icallBack = iBack;
+    }
 
     private boolean isNeedCaptcha = false;
 
@@ -83,6 +92,7 @@ public class LoginDialog extends Dialog {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, UserLoginResult response) {
                         if (response.isSuccess()) {
+                            Settings.userLoginResult = response;
                             Settings.Cookies.clear();
                             for (Header header : headers) {
                                 if (header.getName().equals("Set-Cookie")) {
@@ -93,6 +103,7 @@ public class LoginDialog extends Dialog {
                             settings.setUsername(name);
                             settings.setPassword(pwd);
                             hide();
+                            icallBack.onLogin(true);
                         } else if (response.getResult().contains("captcha")) {
                             Toast.makeText(getContext(), response.getResult(), Toast.LENGTH_SHORT).show();
                             captchaLayout.setVisibility(View.VISIBLE);

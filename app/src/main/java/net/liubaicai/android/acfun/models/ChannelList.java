@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ChannelList {
 
-    private ChannelUser user;
+    private UserData user;
     private List<String> tags;
     private String description;
     private int contentId;
@@ -30,10 +30,10 @@ public class ChannelList {
     private int viewOnly;
     private int toplevel;
     private int tudouDomain;
-    public void setUser(ChannelUser user) {
+    public void setUser(UserData user) {
          this.user = user;
      }
-     public ChannelUser getUser() {
+     public UserData getUser() {
          return user;
      }
 

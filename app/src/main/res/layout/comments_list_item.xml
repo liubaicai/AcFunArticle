@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/comment_item_wrap_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingTop="13.0dip">
+
+    <LinearLayout
+        android:id="@+id/s_comment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3.0dip"
+        android:layout_marginBottom="0.0dip"
+        android:layout_marginLeft="12.0dip"
+        android:layout_marginRight="12.0dip"
+        android:background="@drawable/shape_quote"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/ss_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@string/comments_more"
+            android:textColor="#ff999999"
+            android:textSize="10.0sp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <net.liubaicai.android.acfun.views.TextViewFixTouchConsume
+            android:id="@+id/s_content_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="3.0dip"
+            android:paddingLeft="6.0dip"
+            android:paddingRight="6.0dip"
+            android:paddingTop="0.0dip"
+            android:text="content"
+            android:textColor="@color/text_deep_gray_color"
+            android:textSize="@dimen/secondary_text" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="3.0dip">
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6.0dip"
+                android:layout_weight="1.0"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="#"
+                    android:textColor="#ffbbbbbb"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:id="@+id/s_floor_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="floor"
+                    android:textColor="#ffbbbbbb"
+                    android:textSize="10.0sp" />
+
+                <TextView
+                    android:id="@+id/s_name_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="name"
+                    android:textColor="#ff999999"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comment_item_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_transparent"
+        android:orientation="vertical"
+        android:paddingBottom="8.0dip"
+        android:paddingLeft="8.0dip"
+        android:paddingRight="8.0dip"
+        android:paddingTop="3.0dip">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/avatar_image"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                fresco:placeholderImage="@color/white"
+                fresco:roundAsCircle="true"
+                fresco:roundingBorderColor="@color/divider"
+                fresco:roundingBorderWidth="@dimen/height_divider_line" />
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6.0dip"
+                android:layout_weight="1.0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0.0dip"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="name"
+                    android:textColor="@color/text_gray2_color"
+                    android:textSize="13.0sp" />
+
+                <TextView
+                    android:id="@+id/time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0.0dip"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:singleLine="true"
+                    android:text="time"
+                    android:textColor="#ffbbbbbb"
+                    android:textSize="10.0sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/floor_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="floor"
+                android:textColor="#ffbbbbbb"
+                android:textSize="13.0sp" />
+        </LinearLayout>
+
+        <net.liubaicai.android.acfun.views.TextViewFixTouchConsume
+            android:id="@+id/content_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8.0dip"
+            android:paddingLeft="0.0dip"
+            android:paddingRight="0.0dip"
+            android:paddingTop="8.0dip"
+            android:text="content"
+            android:textColor="@color/text_black_color"
+            android:textSize="@dimen/secondary_text" />
+    </LinearLayout>
+</LinearLayout>
