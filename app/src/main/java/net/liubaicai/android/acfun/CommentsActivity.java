@@ -162,7 +162,7 @@ public class CommentsActivity extends AppCompatActivity {
         if (isLoading || isBottom)
             return;
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = String.format(new Settings(getApplicationContext()).getCommentUrl(),
+        String url = String.format(Settings.getCommentUrl(),
                 contentId, pageNum, System.currentTimeMillis());
         Log.d("baicaidebug", url);
         client.get(url, new BaseJsonHttpResponseHandler<CommentResult>() {
@@ -237,7 +237,7 @@ public class CommentsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String url = new Settings(getApplicationContext()).getSendCommentUrl() + "?" + "text=" + text + "&contentId=" + contentId + "&quoteId=" + quoteId;
+        String url = Settings.getSendCommentUrl() + "?" + "text=" + text + "&contentId=" + contentId + "&quoteId=" + quoteId;
         Log.d("baicaidebug", url);
         RequestParams params = new RequestParams();
         params.add("text", text);

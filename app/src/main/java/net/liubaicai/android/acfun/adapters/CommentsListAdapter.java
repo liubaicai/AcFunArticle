@@ -116,40 +116,49 @@ public class CommentsListAdapter extends BaseAdapter {
         }
         CommentContent commentListItem = (CommentContent) getItem(position);
 
-        avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
-        name_text.setText(commentListItem.getUserName());
-        if (commentListItem.getNameRed() == 1)
-            name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
-        else
-            name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
-        time_text.setText(commentListItem.getPostDate());
-        floor_text.setText(String.valueOf(commentListItem.getCount()));
-        //content_text.setText(commentListItem.getContent());
-        TextViewUtils.setCommentContent(content_text, commentListItem);
+        if (commentListItem != null) {
+            avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
+            name_text.setText(commentListItem.getUserName());
+            if (commentListItem.getNameRed() == 1)
+                name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
+            else
+                name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
+            time_text.setText(commentListItem.getPostDate());
+            floor_text.setText(String.valueOf(commentListItem.getCount()));
+            //content_text.setText(commentListItem.getContent());
+            TextViewUtils.setCommentContent(content_text, commentListItem);
 
-        if (commentListItem.getQuoteId() > 0) {
-            if (data.indexOfKey(commentListItem.getQuoteId()) >= 0) {
-                s_comment.setVisibility(View.VISIBLE);
-                CommentContent s_commentListItem = data.get(commentListItem.getQuoteId());
-                //s_content_text.setText(s_commentListItem.getContent());
-                TextViewUtils.setCommentContent(s_content_text, s_commentListItem);
-                s_floor_text.setText(String.valueOf(s_commentListItem.getCount()));
-                s_name_text.setText(s_commentListItem.getUserName());
+            if (commentListItem.getQuoteId() > 0) {
+                if (data.indexOfKey(commentListItem.getQuoteId()) >= 0) {
+                    s_comment.setVisibility(View.VISIBLE);
+                    CommentContent s_commentListItem = data.get(commentListItem.getQuoteId());
+                    //s_content_text.setText(s_commentListItem.getContent());
+                    TextViewUtils.setCommentContent(s_content_text, s_commentListItem);
+                    s_floor_text.setText(String.valueOf(s_commentListItem.getCount()));
+                    s_name_text.setText(s_commentListItem.getUserName());
 
-                if (s_commentListItem.getQuoteId() > 0) {
-                    if (data.indexOfKey(s_commentListItem.getQuoteId()) >= 0) {
-                        ss_comment.setVisibility(View.VISIBLE);
+                    if (s_commentListItem.getQuoteId() > 0) {
+                        if (data.indexOfKey(s_commentListItem.getQuoteId()) >= 0) {
+                            ss_comment.setVisibility(View.VISIBLE);
+                        } else {
+                            ss_comment.setVisibility(View.GONE);
+                        }
                     } else {
                         ss_comment.setVisibility(View.GONE);
                     }
                 } else {
-                    ss_comment.setVisibility(View.GONE);
+                    s_comment.setVisibility(View.GONE);
                 }
             } else {
                 s_comment.setVisibility(View.GONE);
             }
         } else {
-            s_comment.setVisibility(View.GONE);
+            avatar_image.setImageResource(R.drawable.img_default_avatar);
+            name_text.setText("::该楼层已被删除");
+            name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
+            time_text.setText("::该楼层已被删除");
+            floor_text.setText("0");
+            content_text.setText("::该楼层已被删除");
         }
 
         return convertView;

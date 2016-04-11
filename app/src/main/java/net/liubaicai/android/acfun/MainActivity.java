@@ -118,23 +118,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void selectChannel(int id) {
         if (id == R.id.action_110) {
-            new Settings(getApplicationContext()).setChannel(110);
+            Settings.setChannel(110);
             reloadChannelListData();
         }
         if (id == R.id.action_73) {
-            new Settings(getApplicationContext()).setChannel(73);
+            Settings.setChannel(73);
             reloadChannelListData();
         }
         if (id == R.id.action_74) {
-            new Settings(getApplicationContext()).setChannel(74);
+            Settings.setChannel(74);
             reloadChannelListData();
         }
         if (id == R.id.action_75) {
-            new Settings(getApplicationContext()).setChannel(75);
+            Settings.setChannel(75);
             reloadChannelListData();
         }
         if (id == R.id.action_164) {
-            new Settings(getApplicationContext()).setChannel(164);
+            Settings.setChannel(164);
             reloadChannelListData();
         }
     }
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
     private void getChannelListData(final int pageNum)
     {
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = String.format(new Settings(getApplicationContext()).getChannelUrl(),
-                new Settings(getApplicationContext()).getChannel(),pageNum,System.currentTimeMillis());
+        String url = String.format(Settings.getChannelUrl(),
+                Settings.getChannel(), pageNum, System.currentTimeMillis());
         Log.d("baicaidebug",url);
         client.get(url,
                 new BaseJsonHttpResponseHandler<ChannelResult>() {
@@ -226,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void autoLogin() {
         if(!Settings.IsLogin()) {
-            String username = new Settings(getApplicationContext()).getUsername();
-            String password = new Settings(getApplicationContext()).getPassword();
+            String username = Settings.getUsername();
+            String password = Settings.getPassword();
             if(!username.isEmpty()&&!password.isEmpty()){
                 String url = "http://m.acfun.tv/login.aspx";
                 RequestParams params = new RequestParams();
@@ -247,13 +247,13 @@ public class MainActivity extends AppCompatActivity {
                             }
                             drawerHelper.setLogin();
                         } else {
-                            new Settings(getApplicationContext()).Logout();
+                            Settings.Logout();
                         }
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, String rawJsonData, UserLoginResult errorResponse) {
-                        new Settings(getApplicationContext()).Logout();
+                        Settings.Logout();
                     }
 
                     @Override

@@ -99,9 +99,8 @@ public class LoginDialog extends Dialog {
                                     Settings.Cookies.add(header.getValue());
                                 }
                             }
-                            Settings settings = new Settings(getContext());
-                            settings.setUsername(name);
-                            settings.setPassword(pwd);
+                            Settings.setUsername(name);
+                            Settings.setPassword(pwd);
                             hide();
                             icallBack.onLogin(true);
                         } else if (response.getResult().contains("captcha")) {

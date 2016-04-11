@@ -6,14 +6,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -25,6 +31,10 @@ import net.liubaicai.android.acfun.AboutActivity;
 import net.liubaicai.android.acfun.Popups.LoginDialog;
 import net.liubaicai.android.acfun.R;
 import net.liubaicai.android.acfun.SettingsActivity;
+import net.liubaicai.android.acfun.models.CheckInResult;
+import net.liubaicai.android.acfun.models.CommentSubmitResult;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Baicai on 2016/4/7.
@@ -37,6 +47,7 @@ public class DrawerHelper {
     View header;
     SimpleDraweeView slide_menu_avatar;
     TextView slide_menu_nickname;
+    Button checkInButton;
 
     PrimaryDrawerItem userItem;
     PrimaryDrawerItem settingItem;
@@ -71,6 +82,41 @@ public class DrawerHelper {
         header = inflater.inflate(R.layout.slide_menu_header, null);
         slide_menu_avatar = (SimpleDraweeView) header.findViewById(R.id.slide_menu_avatar);
         slide_menu_nickname = (TextView) header.findViewById(R.id.slide_menu_nickname);
+        checkInButton = (Button) header.findViewById(R.id.checkInButton);
+        checkInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = String.format(Settings.getCheckInUrl(), System.currentTimeMillis());
+                Log.d("baicaidebug", url);
+                AsyncHttpClient client = new AsyncHttpClient();
+                String cookies = "";
+                for (String cookie : Settings.Cookies) {
+                    cookies += cookie + ";";
+                }
+                client.addHeader("Cookie", cookies);
+                client.post(url, new BaseJsonHttpResponseHandler<CheckInResult>() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, CheckInResult response) {
+                        Log.d("baicaidebug", rawJsonResponse);
+                        if (response.getCode() == 200) {
+                            Toast.makeText(activity, response.getData().getMsg(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(activity, response.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, String rawJsonData, CheckInResult errorResponse) {
+                        Toast.makeText(activity, "提交数据失败，请稍后重试", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    protected CheckInResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
+                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), CheckInResult.class).next();
+                    }
+                });
+            }
+        });
 
         userItem = new PrimaryDrawerItem().withName(R.string.action_user).withSelectable(false);
         settingItem = new PrimaryDrawerItem().withName(R.string.action_settings).withSelectable(false);
@@ -103,7 +149,7 @@ public class DrawerHelper {
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
-                                        new Settings(activity).Logout();
+                                        Settings.Logout();
                                         setLogout();
                                     }
                                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {

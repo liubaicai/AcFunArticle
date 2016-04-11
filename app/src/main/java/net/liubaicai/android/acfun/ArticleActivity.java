@@ -74,7 +74,7 @@ public class ArticleActivity extends AppCompatActivity {
         webView.getSettings().setDefaultTextEncodingName("UTF -8");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = String.format(new Settings(getApplicationContext()).getArticleUrl(),
+        String url = String.format(Settings.getArticleUrl(),
                 contentId,System.currentTimeMillis());
         Log.d("baicaidebug",url);
         client.get(url,

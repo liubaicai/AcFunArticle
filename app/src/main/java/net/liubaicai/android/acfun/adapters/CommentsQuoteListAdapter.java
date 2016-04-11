@@ -91,17 +91,25 @@ public class CommentsQuoteListAdapter extends BaseAdapter {
         }
         CommentContent commentListItem = (CommentContent) getItem(position);
 
-        avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
-        name_text.setText(commentListItem.getUserName());
-        if (commentListItem.getNameRed() == 1)
-            name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
-        else
+        if (commentListItem != null) {
+            avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
+            name_text.setText(commentListItem.getUserName());
+            if (commentListItem.getNameRed() == 1)
+                name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
+            else
+                name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
+            time_text.setText(commentListItem.getPostDate());
+            floor_text.setText(String.valueOf(commentListItem.getCount()));
+            //content_text.setText(commentListItem.getContent());
+            TextViewUtils.setCommentContent(content_text, commentListItem);
+        } else {
+            avatar_image.setImageResource(R.drawable.img_default_avatar);
+            name_text.setText("::该楼层已被删除");
             name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
-        time_text.setText(commentListItem.getPostDate());
-        floor_text.setText(String.valueOf(commentListItem.getCount()));
-        //content_text.setText(commentListItem.getContent());
-        TextViewUtils.setCommentContent(content_text, commentListItem);
-
+            time_text.setText("::该楼层已被删除");
+            floor_text.setText("0");
+            content_text.setText("::该楼层已被删除");
+        }
         return convertView;
     }
 

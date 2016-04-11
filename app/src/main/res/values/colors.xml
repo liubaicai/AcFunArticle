@@ -267,6 +267,6 @@
     <color name="video_detail_follow_disable">#ffff8787</color>
     <color name="video_duration_text">#8fffffff</color>
     <color name="video_indicator">#fff2a971</color>
-    <color name="white">#ffffffff</color>
+    <color name="white">#ffffff</color>
     <color name="white_20">#33ffffff</color>
 </resources>

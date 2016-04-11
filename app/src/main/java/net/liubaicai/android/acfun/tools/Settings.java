@@ -22,66 +22,62 @@ public class Settings {
 
     public static UserLoginResult userLoginResult;
 
-    public void Logout(){
+    public static void Logout() {
         Cookies.clear();
         setUsername("");
         setPassword("");
     }
 
-    SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
 
-    public Settings(Context context){
-        sharedPreferences = context.getSharedPreferences("settings", context.MODE_PRIVATE);
-    }
-
-    public int getChannel() {
+    public static int getChannel() {
         return sharedPreferences.getInt("channel", 110);
     }
 
-    public void setChannel(int channel) {
+    public static void setChannel(int channel) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("channel", channel);
         editor.commit();
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return sharedPreferences.getString("username", "");
     }
 
-    public void setUsername(String username) {
+    public static void setUsername(String username) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", username);
         editor.commit();
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return sharedPreferences.getString("password", "");
     }
 
-    public void setPassword(String password) {
+    public static void setPassword(String password) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("password", password);
         editor.commit();
     }
 
 
-    public String getChannelUrl() {
+    public static String getChannelUrl() {
         return sharedPreferences.getString("channel_url", "http://api.acfun.tv/apiserver/content/channel?pageSize=20&channelId=%d&pageNo=%d&_=%d");
     }
 
-    public String getArticleUrl() {
+    public static String getArticleUrl() {
         return sharedPreferences.getString("article_url", "http://api.acfun.tv/apiserver/content/info?contentId=%d&_=%d");
     }
 
-    public String getCommentUrl() {
+    public static String getCommentUrl() {
         return sharedPreferences.getString("comment_url", "http://www.acfun.tv/comment/content/web/list?pageSize=20&contentId=%d&pageNo=%d&_=%d");
     }
 
-    public String getSendCommentUrl() {
+    public static String getSendCommentUrl() {
         return sharedPreferences.getString("send_comment_url", "http://m.acfun.tv/comment.aspx");
     }
 
-    public String getCheckInUrl() {
-        return sharedPreferences.getString("check_in_url", "http://www.acfun.tv/member/checkin.aspx");
+    public static String getCheckInUrl() {
+        return sharedPreferences.getString("check_in_url", "http://www.acfun.tv/webapi/record/actions/signin?channel=0&date=%d");
     }
 }

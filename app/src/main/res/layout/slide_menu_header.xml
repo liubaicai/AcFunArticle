@@ -34,4 +34,16 @@
         android:textColor="@color/white"
         android:textSize="18.0sp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="签到"
+        android:id="@+id/checkInButton"
+        android:layout_alignBottom="@+id/slide_menu_nickname"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dip"
+        android:textColor="@color/white" />
+
 </RelativeLayout>
