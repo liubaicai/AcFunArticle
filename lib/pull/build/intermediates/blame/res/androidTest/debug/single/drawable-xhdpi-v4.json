@@ -1,14 +1,14 @@
 [
     {
-        "merged": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_rotate.png",
-        "source": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_rotate.png"
+        "merged": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/default_ptr_flip.png",
+        "source": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/default_ptr_flip.png"
     },
     {
-        "merged": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\default_ptr_flip.png",
-        "source": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\default_ptr_flip.png"
+        "merged": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/default_ptr_rotate.png",
+        "source": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/default_ptr_rotate.png"
     },
     {
-        "merged": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\indicator_arrow.png",
-        "source": "E:\\ProjectsAndroid\\AcFun\\lib\\pull\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\indicator_arrow.png"
+        "merged": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/indicator_arrow.png",
+        "source": "/Users/mac/Documents/projects/AcFunArticle/lib/pull/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/indicator_arrow.png"
     }
 ]
