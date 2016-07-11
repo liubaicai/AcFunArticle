@@ -48,7 +48,7 @@ public class ArticleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = this.getIntent();
-        final String contentId=intent.getStringExtra("contentId");
+        final int contentId=intent.getIntExtra("contentId",0);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,6 +21,16 @@ public class CommentContent {
     private int nameRed;
     private int avatarFrame;
 
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    private String isDelete;
+
     public int getCid() {
         return cid;
     }

@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position>0){
                     ChannelResult.DataBean.ListBean item = channelListItems.get(position-1);
                     Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
-                    intent.putExtra("contentId", item.getContentId());
+                    intent.putExtra("contentId", Integer.parseInt(item.getContentId()));
                     startActivity(intent);
                 }
             }
