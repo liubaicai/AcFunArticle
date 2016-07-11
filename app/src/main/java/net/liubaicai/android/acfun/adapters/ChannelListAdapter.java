@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.liubaicai.android.acfun.R;
-import net.liubaicai.android.acfun.models.ChannelList;
+import net.liubaicai.android.acfun.models.ChannelResult;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,12 +20,12 @@ import java.util.List;
  */
 public class ChannelListAdapter extends BaseAdapter {
 
-    private List<ChannelList> channelListItems;
+    private List<ChannelResult.DataBean.ListBean> channelListItems;
     private int resource;
     private LayoutInflater inflater;
     private Context basecontext;
 
-    public ChannelListAdapter(Context context, List<ChannelList> channelListItems, int resource) {
+    public ChannelListAdapter(Context context, List<ChannelResult.DataBean.ListBean> channelListItems, int resource) {
         this.channelListItems = channelListItems;
         this.resource = resource;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -87,7 +86,7 @@ public class ChannelListAdapter extends BaseAdapter {
             update_time_string = cache.update_time_string;
             comments_num = cache.comments_num;
         }
-        ChannelList channelListItem = channelListItems.get(position);
+        ChannelResult.DataBean.ListBean channelListItem = channelListItems.get(position);
 
         article_title.setText(Html.fromHtml(channelListItem.getTitle()));
         article_description.setText(Html.fromHtml(Html.fromHtml(channelListItem.getDescription()).toString()));

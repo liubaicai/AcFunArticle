@@ -62,11 +62,11 @@ public class Settings {
 
 
     public static String getChannelUrl() {
-        return sharedPreferences.getString("channel_url", "http://api.acfun.tv/apiserver/content/channel?pageSize=20&channelId=%d&pageNo=%d&_=%d");
+        return sharedPreferences.getString("channel_url", "http://api.aixifan.com/searches/channel?sort=4&pageSize=20&channelIds=%d&pageNo=%d&_=%d");
     }
 
     public static String getArticleUrl() {
-        return sharedPreferences.getString("article_url", "http://api.acfun.tv/apiserver/content/info?contentId=%d&_=%d");
+        return sharedPreferences.getString("article_url", "http://api.aixifan.com/contents/");
     }
 
     public static String getCommentUrl() {

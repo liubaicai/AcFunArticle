@@ -24,7 +24,6 @@ import com.loopj.android.http.RequestParams;
 import com.umeng.analytics.MobclickAgent;
 
 import net.liubaicai.android.acfun.adapters.ChannelListAdapter;
-import net.liubaicai.android.acfun.models.ChannelList;
 import net.liubaicai.android.acfun.models.ChannelResult;
 import net.liubaicai.android.acfun.models.UserLoginResult;
 import net.liubaicai.android.acfun.tools.DrawerHelper;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     PullToRefreshListView refreshListView;
 
     ChannelListAdapter adapter;
-    List<ChannelList> channelListItems = new ArrayList<ChannelList>();
+    List<ChannelResult.DataBean.ListBean> channelListItems = new ArrayList<>();
     private int pageIndex = 1;
 
     private boolean isLoading=false;
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position>0){
-                    ChannelList item = channelListItems.get(position-1);
+                    ChannelResult.DataBean.ListBean item = channelListItems.get(position-1);
                     Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
                     intent.putExtra("contentId", item.getContentId());
                     startActivity(intent);
@@ -158,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         String url = String.format(Settings.getChannelUrl(),
                 Settings.getChannel(), pageNum, System.currentTimeMillis());
         Log.d("baicaidebug",url);
+        client.addHeader("deviceType","1");
         client.get(url,
                 new BaseJsonHttpResponseHandler<ChannelResult>() {
 
@@ -181,15 +181,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, ChannelResult response) {
                         if (response != null && response.getData() != null
-                                && response.getData().getPage() != null
-                                && response.getData().getPage().getList() != null) {
+                                && response.getData().getList() != null) {
                             if (pageNum == 1) {
                                 channelListItems.clear();
                             }
-                            for (ChannelList item : response.getData().getPage().getList()) {
+                            for (ChannelResult.DataBean.ListBean item : response.getData().getList()) {
                                 channelListItems.add(item);
                             }
                             adapter.notifyDataSetChanged();
+                        }
+                        else if (response!=null && !response.getMessage().isEmpty()){
+                            Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
 

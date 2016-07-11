@@ -22,7 +22,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.umeng.analytics.MobclickAgent;
 
-import net.liubaicai.android.acfun.models.ArticleDetail;
 import net.liubaicai.android.acfun.models.ArticleResult;
 import net.liubaicai.android.acfun.tools.HtmlTool;
 import net.liubaicai.android.acfun.tools.Settings;
@@ -49,8 +48,7 @@ public class ArticleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = this.getIntent();
-        final int contentId=intent.getIntExtra("contentId",0);
-
+        final String contentId=intent.getStringExtra("contentId");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,23 +72,26 @@ public class ArticleActivity extends AppCompatActivity {
         webView.getSettings().setDefaultTextEncodingName("UTF -8");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = String.format(Settings.getArticleUrl(),
-                contentId,System.currentTimeMillis());
+        String url = Settings.getArticleUrl()+contentId;
         Log.d("baicaidebug",url);
+        client.addHeader("deviceType","1");
         client.get(url,
                 new BaseJsonHttpResponseHandler<ArticleResult>(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, ArticleResult response) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        if (response.getSuccess()){
-                            ArticleDetail articleDetail = response.getData().getFullArticle();
+                        if (response.getCode()==200){
+                            ArticleResult.DataBean articleDetail = response.getData();
                             article_detail_head_view_title.setText(Html.fromHtml(articleDetail.getTitle()));
-                            article_detail_head_view_name.setText(articleDetail.getUser().getUsername());
+                            article_detail_head_view_name.setText(articleDetail.getOwner().getName());
                             article_detail_head_view_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(articleDetail.getReleaseDate())));
-                            webView.loadData(HtmlTool.Covert2Html(response.getData().getFullArticle().getTxt()),"text/html;charset=utf-8", null);
+                            webView.loadData(HtmlTool.Covert2Html(response.getData().getArticle().getContent()),"text/html;charset=utf-8", null);
                             if(Build.VERSION.SDK_INT >= 11)
                                 webView.setBackgroundColor(Color.argb(1, 0, 0, 0));
                             //webView.setBackgroundColor(0x00000000);
+                        }
+                        else if (response!=null && !response.getMessage().isEmpty()){
+                            Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
 
