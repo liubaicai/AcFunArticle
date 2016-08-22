@@ -60,57 +60,64 @@ public class CommentsQuoteListAdapter extends BaseAdapter {
         if (commentIdList == null)
             return null;
 
-        SimpleDraweeView avatar_image;
-        TextView name_text;
-        TextView time_text;
-        TextView floor_text;
-        TextViewFixTouchConsume content_text;
+        try{
+            SimpleDraweeView avatar_image;
+            TextView name_text;
+            TextView time_text;
+            TextView floor_text;
+            TextViewFixTouchConsume content_text;
 
-        if (convertView == null) {
-            convertView = inflater.inflate(resource, null);
-            avatar_image = (SimpleDraweeView) convertView.findViewById(R.id.avatar_image);
-            name_text = (TextView) convertView.findViewById(R.id.name_text);
-            time_text = (TextView) convertView.findViewById(R.id.time_text);
-            floor_text = (TextView) convertView.findViewById(R.id.floor_text);
-            content_text = (TextViewFixTouchConsume) convertView.findViewById(R.id.content_text);
+            if (convertView == null) {
+                convertView = inflater.inflate(resource, null);
+                avatar_image = (SimpleDraweeView) convertView.findViewById(R.id.avatar_image);
+                name_text = (TextView) convertView.findViewById(R.id.name_text);
+                time_text = (TextView) convertView.findViewById(R.id.time_text);
+                floor_text = (TextView) convertView.findViewById(R.id.floor_text);
+                content_text = (TextViewFixTouchConsume) convertView.findViewById(R.id.content_text);
 
-            ViewCache cache = new ViewCache();
-            cache.avatar_image = avatar_image;
-            cache.name_text = name_text;
-            cache.time_text = time_text;
-            cache.floor_text = floor_text;
-            cache.content_text = content_text;
-            convertView.setTag(cache);
-        } else {
-            ViewCache cache = (ViewCache) convertView.getTag();
-            avatar_image = cache.avatar_image;
-            name_text = cache.name_text;
-            time_text = cache.time_text;
-            floor_text = cache.floor_text;
-            content_text = cache.content_text;
-        }
-        CommentContent commentListItem = (CommentContent) getItem(position);
+                ViewCache cache = new ViewCache();
+                cache.avatar_image = avatar_image;
+                cache.name_text = name_text;
+                cache.time_text = time_text;
+                cache.floor_text = floor_text;
+                cache.content_text = content_text;
+                convertView.setTag(cache);
+            } else {
+                ViewCache cache = (ViewCache) convertView.getTag();
+                avatar_image = cache.avatar_image;
+                name_text = cache.name_text;
+                time_text = cache.time_text;
+                floor_text = cache.floor_text;
+                content_text = cache.content_text;
+            }
+            CommentContent commentListItem = (CommentContent) getItem(position);
 
-        if (commentListItem != null) {
-            avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
-            name_text.setText(commentListItem.getUserName());
-            if (commentListItem.getNameRed() == 1)
-                name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
-            else
+            if (commentListItem != null) {
+                if (commentListItem.getUserImg()!=null&&!commentListItem.getUserImg().isEmpty())
+                    avatar_image.setImageURI(Uri.parse(commentListItem.getUserImg()));
+                else
+                    avatar_image.setImageResource(R.drawable.img_default_avatar);
+                name_text.setText(commentListItem.getUserName());
+                if (commentListItem.getNameRed() == 1)
+                    name_text.setTextColor(context.getResources().getColor(R.color.news_number_color));
+                else
+                    name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
+                time_text.setText(commentListItem.getPostDate());
+                floor_text.setText(String.valueOf(commentListItem.getCount()));
+                //content_text.setText(commentListItem.getContent());
+                TextViewUtils.setCommentContent(content_text, commentListItem);
+            } else {
+                avatar_image.setImageResource(R.drawable.img_default_avatar);
+                name_text.setText("::该楼层已被删除");
                 name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
-            time_text.setText(commentListItem.getPostDate());
-            floor_text.setText(String.valueOf(commentListItem.getCount()));
-            //content_text.setText(commentListItem.getContent());
-            TextViewUtils.setCommentContent(content_text, commentListItem);
-        } else {
-            avatar_image.setImageResource(R.drawable.img_default_avatar);
-            name_text.setText("::该楼层已被删除");
-            name_text.setTextColor(context.getResources().getColor(R.color.text_gray2_color));
-            time_text.setText("::该楼层已被删除");
-            floor_text.setText("0");
-            content_text.setText("::该楼层已被删除");
+                time_text.setText("::该楼层已被删除");
+                floor_text.setText("0");
+                content_text.setText("::该楼层已被删除");
+            }
+            return convertView;
+        }catch (Exception ex){
+            return null;
         }
-        return convertView;
     }
 
 

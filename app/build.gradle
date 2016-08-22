@@ -8,8 +8,8 @@ android {
         applicationId "net.liubaicai.android.acfun"
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 4
-        versionName "1.2.0.1"
+        versionCode 5
+        versionName "1.2.0.2"
     }
     buildTypes {
         release {
