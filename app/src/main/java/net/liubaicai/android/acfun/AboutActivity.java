@@ -25,6 +25,6 @@ public class AboutActivity extends AppCompatActivity {
         webView.getSettings().setDefaultTextEncodingName("UTF -8");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
-        webView.loadUrl("http://www.liubaicai.net/acfunarticle");
+        webView.loadUrl("http://www.liubaicai.net/articles/699.html");
     }
 }

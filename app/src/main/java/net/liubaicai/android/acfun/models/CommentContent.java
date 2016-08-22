@@ -21,6 +21,9 @@ public class CommentContent {
     private int nameRed;
     private int avatarFrame;
 
+    private String isDelete;
+    private String isUpDelete;
+
     public String getIsDelete() {
         return isDelete;
     }
@@ -29,7 +32,13 @@ public class CommentContent {
         this.isDelete = isDelete;
     }
 
-    private String isDelete;
+    public String getisUpDelete() {
+        return isUpDelete;
+    }
+
+    public void setisUpDelete(String isUpDelete) {
+        this.isUpDelete = isUpDelete;
+    }
 
     public int getCid() {
         return cid;
