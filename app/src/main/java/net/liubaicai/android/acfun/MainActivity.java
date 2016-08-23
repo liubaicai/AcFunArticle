@@ -36,7 +36,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     ProgressBar listProgressBar;
     PullToRefreshListView refreshListView;

@@ -42,7 +42,7 @@ import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 
-public class CommentsActivity extends AppCompatActivity {
+public class CommentsActivity extends BaseActivity {
 
     Context context;
 

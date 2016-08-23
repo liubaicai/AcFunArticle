@@ -31,7 +31,7 @@ import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ArticleActivity extends AppCompatActivity {
+public class ArticleActivity extends BaseActivity {
 
     WebView webView;
     ProgressBar progressBar;
