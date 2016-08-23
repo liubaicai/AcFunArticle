@@ -30,6 +30,16 @@ public class Settings {
 
     public static SharedPreferences sharedPreferences;
 
+    public static boolean getIsNoPic() {
+        return sharedPreferences.getBoolean("nopic", true);
+    }
+
+    public static void setIsNoPic(boolean isNoPic) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("nopic", isNoPic);
+        editor.commit();
+    }
+
     public static int getChannel() {
         return sharedPreferences.getInt("channel", 110);
     }

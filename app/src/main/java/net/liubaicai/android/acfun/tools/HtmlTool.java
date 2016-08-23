@@ -16,6 +16,25 @@ public class HtmlTool {
         Pattern p_script = Pattern.compile(regEx_style, Pattern.CASE_INSENSITIVE);
         Matcher m_script = p_script.matcher(str);
         str = m_script.replaceAll(""); // 过滤script标签
+        if (Settings.getIsNoPic()){
+            //str = str.replaceAll("src=\"(.*?)\"","src=\"file:///android_asset/image_error_heng.png\"");
+            str = str +
+                    "<script type=\"text/javascript\">" +
+                    "(function (){"+
+                    "var imageList = document.getElementsByTagName(\"img\");"+
+                    "for(var i=0; i<imageList.length; i++){"+
+                    "var image = imageList[i];"+
+                    "image.href = image.src;"+
+                    "image.src = \"file:///android_asset/image_error_heng.png\";"+
+                    "image.alt = \"点击加载图片\";"+
+                    "image.onclick = function(){"+
+                    "this.src = this.href;" +
+                    "return false;"+
+                    "}"+
+                    "}"+
+                    "}());"+
+                    "</script>";
+        }
         String htmlData = "<html><head><style>div,span,img,p,a,body {max-width: 100%; width:auto; height: auto;}</style></head><body>"
                 +str
                 +"</body></html>";

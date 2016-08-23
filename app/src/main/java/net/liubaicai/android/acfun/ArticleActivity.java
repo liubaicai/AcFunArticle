@@ -50,14 +50,16 @@ public class ArticleActivity extends BaseActivity {
         Intent intent = this.getIntent();
         final int contentId=intent.getIntExtra("contentId",0);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CommentsActivity.class);
-                intent.putExtra("contentId", contentId);
-                startActivity(intent);
-            }
-        });
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), CommentsActivity.class);
+                    intent.putExtra("contentId", contentId);
+                    startActivity(intent);
+                }
+            });
+        }
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         article_detail_head_view_title = (TextView)findViewById(R.id.article_detail_head_view_title);
@@ -71,6 +73,11 @@ public class ArticleActivity extends BaseActivity {
         }
         webView.getSettings().setDefaultTextEncodingName("UTF -8");
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setAllowFileAccess(true);
+        if (Build.VERSION.SDK_INT >= 16){
+            webView.getSettings().setAllowFileAccessFromFileURLs(true);
+            webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        }
         AsyncHttpClient client = new AsyncHttpClient();
         String url = Settings.getArticleUrl()+contentId;
         Log.d("baicaidebug",url);
@@ -85,12 +92,12 @@ public class ArticleActivity extends BaseActivity {
                             article_detail_head_view_title.setText(Html.fromHtml(articleDetail.getTitle()));
                             article_detail_head_view_name.setText(articleDetail.getOwner().getName());
                             article_detail_head_view_time.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(articleDetail.getReleaseDate())));
-                            webView.loadData(HtmlTool.Covert2Html(response.getData().getArticle().getContent()),"text/html;charset=utf-8", null);
+                            webView.loadDataWithBaseURL("file:///android_asset/", HtmlTool.Covert2Html(response.getData().getArticle().getContent()), "text/html", "utf-8", null);
                             if(Build.VERSION.SDK_INT >= 11)
                                 webView.setBackgroundColor(Color.argb(1, 0, 0, 0));
                             //webView.setBackgroundColor(0x00000000);
                         }
-                        else if (response!=null && !response.getMessage().isEmpty()){
+                        else if (!response.getMessage().isEmpty()){
                             Toast.makeText(getApplicationContext(), response.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }

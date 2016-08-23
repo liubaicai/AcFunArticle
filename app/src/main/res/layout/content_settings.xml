@@ -12,4 +12,17 @@
     tools:context="net.liubaicai.android.acfun.SettingsActivity"
     tools:showIn="@layout/activity_settings">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_large">
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_pic_txt"
+            android:id="@+id/no_pic_switch"
+            android:textSize="@dimen/primary_text"/>
+    </LinearLayout>
 </RelativeLayout>

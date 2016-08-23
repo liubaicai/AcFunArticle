@@ -39,4 +39,5 @@
     <string name="post_comment">评论-长按引用</string>
     <string name="comments_more">更多引用已隐藏</string>
     <string name="slide_menu_login">立即登录</string>
+    <string name="no_pic_txt">无图模式</string>
 </resources>
