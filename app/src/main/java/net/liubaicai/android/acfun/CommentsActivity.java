@@ -63,6 +63,7 @@ public class CommentsActivity extends BaseActivity {
 
     EditText comments_edit;
     ImageButton comments_send_btn;
+    ImageButton comments_emotion_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,13 @@ public class CommentsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 sendComment(comments_edit.getText().toString(), contentId, quoteId);
+            }
+        });
+        comments_emotion_btn = (ImageButton) findViewById(R.id.comments_emotion_btn);
+        comments_emotion_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "暂未实现", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,6 +173,7 @@ public class CommentsActivity extends BaseActivity {
         String url = String.format(Settings.getCommentUrl(),
                 contentId, pageNum, System.currentTimeMillis());
         Log.d("baicaidebug", url);
+        client.setTimeout(30000);
         client.get(url, new BaseJsonHttpResponseHandler<CommentResult>() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, CommentResult response) {

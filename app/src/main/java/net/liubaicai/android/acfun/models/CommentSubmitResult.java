@@ -9,6 +9,7 @@ public class CommentSubmitResult {
     private int commentId;
     private int status;
     private String info;
+    private boolean captcha;
 
     public boolean isSuccess() {
         return success;
@@ -16,6 +17,14 @@ public class CommentSubmitResult {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public boolean isCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(boolean captcha) {
+        this.captcha = captcha;
     }
 
     public int getCommentId() {
