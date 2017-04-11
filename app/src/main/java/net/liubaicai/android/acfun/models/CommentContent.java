@@ -20,6 +20,8 @@ public class CommentContent {
     private int downs;
     private int nameRed;
     private int avatarFrame;
+    private int nameType;
+    private int verified;
 
     private String isDelete;
     private String isUpDelete;
@@ -150,5 +152,21 @@ public class CommentContent {
 
     public void setAvatarFrame(int avatarFrame) {
         this.avatarFrame = avatarFrame;
+    }
+
+    public int getNameType() {
+        return nameType;
+    }
+
+    public void setNameType(int nameType) {
+        this.nameType = nameType;
+    }
+
+    public int getVerified() {
+        return verified;
+    }
+
+    public void setVerified(int verified) {
+        this.verified = verified;
     }
 }

@@ -78,6 +78,8 @@ public class ArticleResult {
 
         private VisitBean visit;
         private List<String> tags;
+        private String image;
+        private int parentChannelId;
 
         public ArticleBean getArticle() {
             return article;
@@ -224,6 +226,22 @@ public class ArticleResult {
             this.tags = tags;
         }
 
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
+
+        public int getParentChannelId() {
+            return parentChannelId;
+        }
+
+        public void setParentChannelId(int parentChannelId) {
+            this.parentChannelId = parentChannelId;
+        }
+
         public static class ArticleBean {
             private String content;
 
@@ -240,6 +258,8 @@ public class ArticleResult {
             private String avatar;
             private int id;
             private String name;
+            private int verified;
+            private String verifiedText;
 
             public String getAvatar() {
                 return avatar;
@@ -263,6 +283,22 @@ public class ArticleResult {
 
             public void setName(String name) {
                 this.name = name;
+            }
+
+            public int getVerified() {
+                return verified;
+            }
+
+            public void setVerified(int verified) {
+                this.verified = verified;
+            }
+
+            public String getVerifiedText() {
+                return verifiedText;
+            }
+
+            public void setVerifiedText(String verifiedText) {
+                this.verifiedText = verifiedText;
             }
         }
 

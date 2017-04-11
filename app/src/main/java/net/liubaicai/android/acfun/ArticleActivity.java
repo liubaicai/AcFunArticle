@@ -105,6 +105,7 @@ public class ArticleActivity extends BaseActivity {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, String rawJsonData, ArticleResult errorResponse) {
                         progressBar.setVisibility(View.INVISIBLE);
+                        Log.d("baicaidebug",rawJsonData);
                         Toast.makeText(getApplicationContext(), "获取数据失败，请稍后重试", Toast.LENGTH_LONG).show();
                     }
 
