@@ -16,8 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.umeng.analytics.MobclickAgent;
@@ -111,7 +110,7 @@ public class ArticleActivity extends BaseActivity {
 
                     @Override
                     protected ArticleResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), ArticleResult.class).next();
+                        return JSON.parseObject(rawJsonData, ArticleResult.class);
                     }
 
                     @Override

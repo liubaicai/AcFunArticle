@@ -80,14 +80,14 @@ public class Settings {
     }
 
     public static String getCommentUrl() {
-        return sharedPreferences.getString("comment_url", "http://www.acfun.tv/comment/content/web/list?pageSize=20&contentId=%d&pageNo=%d&_=%d");
+        return sharedPreferences.getString("comment_url", "http://www.acfun.cn/comment/content/web/list?pageSize=20&contentId=%d&pageNo=%d&_=%d");
     }
 
     public static String getSendCommentUrl() {
-        return sharedPreferences.getString("send_comment_url", "http://m.acfun.tv/comment.aspx");
+        return sharedPreferences.getString("send_comment_url", "http://m.acfun.cn/comment.aspx");
     }
 
     public static String getCheckInUrl() {
-        return sharedPreferences.getString("check_in_url", "http://www.acfun.tv/webapi/record/actions/signin?channel=0&date=%d");
+        return sharedPreferences.getString("check_in_url", "http://www.acfun.cn/webapi/record/actions/signin?channel=0&date=%d");
     }
 }

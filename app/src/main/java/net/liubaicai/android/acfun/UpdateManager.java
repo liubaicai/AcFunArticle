@@ -13,8 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
@@ -68,7 +67,7 @@ public class UpdateManager {
 
             @Override
             protected UpdateMessage parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), UpdateMessage.class).next();
+                return JSON.parseObject(rawJsonData, UpdateMessage.class);
             }
         });
     }

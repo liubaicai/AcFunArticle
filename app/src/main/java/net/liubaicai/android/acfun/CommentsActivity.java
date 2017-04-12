@@ -17,9 +17,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpClient;
@@ -202,7 +201,7 @@ public class CommentsActivity extends BaseActivity {
 
             @Override
             protected CommentResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), CommentResult.class).next();
+                return JSON.parseObject(rawJsonData, CommentResult.class);
             }
 
             @Override
@@ -285,7 +284,7 @@ public class CommentsActivity extends BaseActivity {
 
             @Override
             protected CommentSubmitResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), CommentSubmitResult.class).next();
+                return JSON.parseObject(rawJsonData, CommentSubmitResult.class);
             }
         });
 

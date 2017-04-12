@@ -35,13 +35,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.facebook.fresco:fresco:0.9.0+'
     compile('com.mikepenz:materialdrawer:5.1.8@aar') {
         transitive = true
     }
+    compile 'com.alibaba:fastjson:1.1.56.android'
     compile project(':lib:pull')
 }
 

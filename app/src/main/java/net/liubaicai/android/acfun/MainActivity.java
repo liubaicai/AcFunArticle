@@ -13,9 +13,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.loopj.android.http.AsyncHttpClient;
@@ -202,7 +201,7 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     protected ChannelResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), ChannelResult.class).next();
+                        return JSON.parseObject(rawJsonData, ChannelResult.class);
                     }
                 });
     }
@@ -260,7 +259,7 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     protected UserLoginResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), UserLoginResult.class).next();
+                        return JSON.parseObject(rawJsonData, UserLoginResult.class);
                     }
                 });
             }

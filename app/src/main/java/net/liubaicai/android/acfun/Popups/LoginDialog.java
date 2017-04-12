@@ -13,8 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -77,7 +76,7 @@ public class LoginDialog extends Dialog {
                 final String name = username.getText().toString();
                 final String pwd = password.getText().toString();
                 String cap = captcha.getText().toString();
-                String url = "http://m.acfun.tv/login.aspx";
+                String url = "http://m.acfun.cn/login.aspx";
 //                if (isNeedCaptcha)
 //                    url = String.format("http://m.acfun.tv/login.aspx?username=%s&password=%s&captcha=%s",name,pwd,cap);
 //                else
@@ -119,7 +118,7 @@ public class LoginDialog extends Dialog {
 
                     @Override
                     protected UserLoginResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), UserLoginResult.class).next();
+                        return JSON.parseObject(rawJsonData, UserLoginResult.class);
                     }
                 });
             }

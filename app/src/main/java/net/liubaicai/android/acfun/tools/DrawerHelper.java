@@ -13,11 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.BaseJsonHttpResponseHandler;
 import com.mikepenz.materialdrawer.Drawer;
@@ -112,7 +111,7 @@ public class DrawerHelper {
 
                     @Override
                     protected CheckInResult parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
-                        return new ObjectMapper().readValues(new JsonFactory().createParser(rawJsonData), CheckInResult.class).next();
+                        return JSON.parseObject(rawJsonData, CheckInResult.class);
                     }
                 });
             }
