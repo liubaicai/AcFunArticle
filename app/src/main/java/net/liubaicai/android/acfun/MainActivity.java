@@ -230,7 +230,7 @@ public class MainActivity extends BaseActivity {
             String username = Settings.getUsername();
             String password = Settings.getPassword();
             if(!username.isEmpty()&&!password.isEmpty()){
-                String url = "http://m.acfun.tv/login.aspx";
+                String url = "http://m.acfun.cn/login.aspx";
                 RequestParams params = new RequestParams();
                 params.add("username",username);
                 params.add("password",password);
